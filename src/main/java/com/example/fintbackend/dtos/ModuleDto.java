@@ -9,10 +9,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserDto {
+public class ModuleDto {
     private int id;             //PK
-    private String name;
-    private String lastName;
-    private String email;
-    private String password;
+    public String title;
+    public String description;
+    public String status;
+    public int progress;
 }
