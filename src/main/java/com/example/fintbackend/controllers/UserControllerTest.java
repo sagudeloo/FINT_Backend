@@ -22,7 +22,7 @@ public class UserControllerTest {
     }
 
     @GetMapping("/users/{id}")
-    public ResponseEntity<UserDto> findById(@PathVariable Long id){
+    public ResponseEntity<UserDto> findById(@PathVariable Integer id){
         return userService.findById(id);
     }
 
@@ -33,12 +33,12 @@ public class UserControllerTest {
     }
 
     @PutMapping("/users/{id}")
-    public ResponseEntity<UserDto> update(@RequestBody UserDto user, @PathVariable Long id){
+    public ResponseEntity<UserDto> update(@RequestBody UserDto user, @PathVariable Integer id){
         return userService.updateById(user, id);
     }
 
     @DeleteMapping("/users/{id}")
-    public ResponseEntity<UserDto> delete(@PathVariable Long id){
+    public ResponseEntity<UserDto> delete(@PathVariable Integer id){
         return userService.deleteById(id);
     }
 }

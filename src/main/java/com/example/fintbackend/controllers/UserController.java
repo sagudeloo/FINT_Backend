@@ -9,36 +9,36 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping
+@RequestMapping("/users")
 public class UserController {
     private final UserService userService;
     public UserController(UserService userService) {
         this.userService = userService;
     }
 
-    @GetMapping("/users")
+    @GetMapping
     public ResponseEntity<List<UserDto>> findAll(){
         return userService.findAll();
     }
 
-    @GetMapping("/users/{id}")
-    public ResponseEntity<UserDto> findById(@PathVariable Long id){
+    @GetMapping("/{id}")
+    public ResponseEntity<UserDto> findById(@PathVariable Integer id){
         return userService.findById(id);
     }
 
     //TODO: OAuth Config
-    @PostMapping("/users")
+    @PostMapping
     public ResponseEntity<UserDto> create(@RequestBody UserDto user){
         return userService.create(user);
     }
 
-    @PutMapping("/users/{id}")
-    public ResponseEntity<UserDto> update(@RequestBody UserDto user, @PathVariable Long id){
+    @PutMapping("/{id}")
+    public ResponseEntity<UserDto> update(@RequestBody UserDto user, @PathVariable Integer id){
         return userService.updateById(user, id);
     }
 
-    @DeleteMapping("/users/{id}")
-    public ResponseEntity<UserDto> delete(@PathVariable Long id){
+    @DeleteMapping("/{id}")
+    public ResponseEntity<UserDto> delete(@PathVariable Integer id){
         return userService.deleteById(id);
     }
 }

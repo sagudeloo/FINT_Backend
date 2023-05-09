@@ -1,9 +1,11 @@
 package com.example.fintbackend.repositories;
 
-import com.example.fintbackend.persistence.entity.UserModule;
+import com.example.fintbackend.models.UsersModules;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-public interface UserModuleRepository extends CrudRepository<UserModule, Long> {
+@Repository
+public interface UserModuleRepository extends CrudRepository<UsersModules, Integer> {
     //TODO: UserModule parameter is supposed to come from "models". Check this up.
 
 }

@@ -1,4 +1,4 @@
-package com.example.fintbackend.persistence.entity;
+/*package com.example.fintbackend.persistence.entity;
 
 import jakarta.persistence.*;
 
@@ -49,3 +49,6 @@ public class Content {
         this.contentText = contentText;
     }
 }
+
+
+ */
