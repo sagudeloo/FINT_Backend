@@ -1,4 +1,7 @@
-package com.example.fintbackend.models;
+/*package com.example.fintbackend.models;
 
 public class Multimedias {
 }
+
+
+ */
