@@ -9,10 +9,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserDto {
+public class MultimediaDto {
+
     private Integer id;             //PK
-    private String name;
-    private String email;
-    private String password;
-    private String role;            //User, PremiumUser, Admin
+    private String title;
+    private String content;
+    private Integer duration;
+    private Integer contentId;      //FK
+
 }
