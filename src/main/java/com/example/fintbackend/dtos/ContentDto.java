@@ -10,9 +10,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class ContentDto {
-    private int id;             //PK
+    private Integer id;             //PK
     private String title;
-    private String content;
-    private int subjectId;      //FK
-    private int multimediaId;   //FK
+    private String text;
+    private Integer subjectId;      //FK
 }
