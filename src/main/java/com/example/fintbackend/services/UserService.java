@@ -39,6 +39,7 @@ public class UserService {
         newUser.setName(user.getName());
         newUser.setEmail(user.getEmail());
         newUser.setPassword(user.getPassword());
+        newUser.setRole(user.getRole());
         userRepository.save(buildUser(newUser));
         return new ResponseEntity("New user created", HttpStatus.CREATED);
     }
@@ -49,6 +50,7 @@ public class UserService {
                 .name(user.getName())
                 .email(user.getEmail())
                 .password(encoder.encode(user.getPassword()))
+                .role(user.getRole())
                 .build();
     }
 
@@ -60,7 +62,7 @@ public class UserService {
         var a = userRepository.existsById(id);
         if(a){
             var b = userRepository.findById(id).get();
-            b = b.withName(user.getName()).withPassword(user.getPassword()).withEmail(user.getEmail());
+            b = b.withName(user.getName()).withPassword(user.getPassword()).withEmail(user.getEmail()).withRole(user.getRole());
             userRepository.save(b);
             return new ResponseEntity("Se ha modificado el usuario con id: " + id, HttpStatus.OK);
         }
