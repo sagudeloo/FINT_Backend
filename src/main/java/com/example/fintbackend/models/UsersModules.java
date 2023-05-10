@@ -7,17 +7,16 @@ import java.io.Serializable;
 
 @Entity
 @Data
-@Table(name="users")
+@Table(name="users_modules")
 @With
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Users implements Serializable {
+public class UsersModules implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String name;
-    private String email;
-    private String password;
-    private String role;
+    private Integer userId;
+    private Integer moduleId;
+    private Integer progress;
 }

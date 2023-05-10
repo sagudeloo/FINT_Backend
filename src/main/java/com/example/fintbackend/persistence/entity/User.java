@@ -1,4 +1,4 @@
-package com.example.fintbackend.persistence.entity;
+/*package com.example.fintbackend.persistence.entity;
 
 import jakarta.persistence.*;
 
@@ -17,7 +17,7 @@ public class User {
     private String lastName;
 
     private String login;
-
+//TODO: I suggest to use email as login.
     private String email;
 
     private String password;
@@ -79,3 +79,6 @@ public class User {
 
 
 }
+
+
+ */

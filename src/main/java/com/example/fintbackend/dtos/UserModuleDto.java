@@ -10,7 +10,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class UserModuleDto {
-    private int id;         //PK
-    private int userId;     //FK
-    private int moduleId;   //Fk
+    private Integer id;         //PK
+    private Integer userId;     //FK
+    private Integer moduleId;   //Fk
+    private Integer progress;
 }

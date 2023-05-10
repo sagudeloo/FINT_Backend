@@ -10,9 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class ModuleDto {
-    private int id;             //PK
-    public String title;
-    public String description;
-    public String status;
-    public int progress;
+    private Integer id;             //PK
+    private String title;
+    private String description;
 }
