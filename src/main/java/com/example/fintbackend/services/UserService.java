@@ -41,7 +41,7 @@ public class UserService {
         newUser.setPassword(user.getPassword());
         newUser.setRole(user.getRole());
         userRepository.save(buildUser(newUser));
-        return new ResponseEntity("New user created", HttpStatus.CREATED);
+        return new ResponseEntity(HttpStatus.CREATED);
     }
     /*      Hash Password   */
     private Users buildUser(UserDto user){
@@ -57,6 +57,11 @@ public class UserService {
     //TODO: @ApiResponses not working... Check dependencies
 
     //TODO: Currently mixing content of UserControllersSQL + services in SWMDBJWT
+
+    public Boolean existsByEmail(@PathVariable String email){
+        var a = userRepository.findByEmail(email);
+        return a.isPresent();
+    }
 
     public ResponseEntity<UserDto> updateById(@RequestBody UserDto user, @PathVariable Integer id){
         var a = userRepository.existsById(id);
