@@ -26,6 +26,11 @@ public class UserControllerTest {
         return userService.findById(id);
     }
 
+    @GetMapping("/users/checkEmail/{email}")
+    public Boolean checkEmail(@PathVariable String email){
+        return userService.existsByEmail(email);
+    }
+
     //TODO: OAuth Config
     @PostMapping("/users")
     public ResponseEntity<UserDto> create(@RequestBody UserDto user){
@@ -41,4 +46,5 @@ public class UserControllerTest {
     public ResponseEntity<UserDto> delete(@PathVariable Integer id){
         return userService.deleteById(id);
     }
+
 }

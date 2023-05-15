@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -24,6 +24,11 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<UserDto> findById(@PathVariable Integer id){
         return userService.findById(id);
+    }
+
+    @GetMapping("/checkEmail/{email}")
+    public Boolean checkEmail(@PathVariable String email){
+        return userService.existsByEmail(email);
     }
 
     //TODO: OAuth Config
