@@ -1,11 +1,13 @@
 package com.example.fintbackend.controllers;
 
 import com.example.fintbackend.dtos.UserDto;
+import com.example.fintbackend.models.Users;
 import com.example.fintbackend.services.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController

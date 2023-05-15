@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -61,6 +62,9 @@ public class UserService {
     public Boolean existsByEmail(@PathVariable String email){
         var a = userRepository.findByEmail(email);
         return a.isPresent();
+    }
+    public Optional<Users> findUserByEmail(@RequestBody String email){
+        return userRepository.findByEmail(email);
     }
 
     public ResponseEntity<UserDto> updateById(@RequestBody UserDto user, @PathVariable Integer id){
