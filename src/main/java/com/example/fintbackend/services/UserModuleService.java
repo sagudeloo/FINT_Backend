@@ -36,7 +36,7 @@ public class UserModuleService {
         newUserModule.setModuleId(userModule.getModuleId());
         newUserModule.setProgress(userModule.getProgress());
         userModuleRepository.save(newUserModule);
-        return new ResponseEntity("Se ha creado un nuevo userModule", HttpStatus.CREATED);
+        return new ResponseEntity(HttpStatus.CREATED);
     }
     public ResponseEntity<UserModuleDto> updateById(@RequestBody UserModuleDto userModule, @PathVariable Integer id){
         var a = userModuleRepository.existsById(id);
@@ -44,12 +44,12 @@ public class UserModuleService {
             var b = userModuleRepository.findById(id).get();
             b = b.withUserId(userModule.getUserId()).withModuleId(userModule.getModuleId()).withProgress(userModule.getProgress());
             userModuleRepository.save(b);
-            return new ResponseEntity("Se ha modificado el userModule con id: "+id, HttpStatus.OK);
+            return new ResponseEntity(HttpStatus.OK);
         }
-        return new ResponseEntity("El userModule buscado no existe", HttpStatus.NOT_FOUND);
+        return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
     public ResponseEntity<UserModuleDto> deleteById(@PathVariable Integer id){
         userModuleRepository.deleteById(id);
-        return new ResponseEntity("El userModule con id: "+id+" ha sido eliminado", HttpStatus.NO_CONTENT);
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 }
