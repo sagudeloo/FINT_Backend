@@ -34,7 +34,7 @@ public class ModuleService {
         newModule.setTitle(module.getTitle());
         newModule.setDescription(module.getDescription());
         moduleRepository.save(newModule);
-        return new ResponseEntity("Se ha creado un nuevo modulo", HttpStatus.CREATED);
+        return new ResponseEntity(HttpStatus.CREATED);
     }
 
     public ResponseEntity<ModuleDto> updateById(@RequestBody ModuleDto module, @PathVariable Integer id){
@@ -43,12 +43,12 @@ public class ModuleService {
             var b = moduleRepository.findById(id).get();
             b = b.withTitle(module.getTitle()).withDescription(module.getDescription());
             moduleRepository.save(b);
-            return new ResponseEntity("Se ha modificado el modulo con id: " + id, HttpStatus.OK);
+            return new ResponseEntity(HttpStatus.OK);
         }
-        return new ResponseEntity("El modulo buscado no existe", HttpStatus.NOT_FOUND);
+        return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
     public ResponseEntity<ModuleDto> deleteById(@PathVariable Integer id){
         moduleRepository.deleteById(id);
-        return new ResponseEntity("El modulo ha sido borrado", HttpStatus.NO_CONTENT);
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 }

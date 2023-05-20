@@ -1,11 +1,13 @@
 package com.example.fintbackend.controllers;
 
 import com.example.fintbackend.dtos.UserDto;
+import com.example.fintbackend.models.Users;
 import com.example.fintbackend.services.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -26,6 +28,16 @@ public class UserControllerTest {
         return userService.findById(id);
     }
 
+    @GetMapping("/users/checkEmail/{email}")
+    public Boolean checkEmail(@PathVariable String email){
+        return userService.existsByEmail(email);
+    }
+
+    @PostMapping("/users/userByEmail")
+    public Optional<Users> userByEmail(@RequestBody String email){
+        return userService.findUserByEmail(email);
+    }
+
     //TODO: OAuth Config
     @PostMapping("/users")
     public ResponseEntity<UserDto> create(@RequestBody UserDto user){
@@ -41,4 +53,5 @@ public class UserControllerTest {
     public ResponseEntity<UserDto> delete(@PathVariable Integer id){
         return userService.deleteById(id);
     }
+
 }

@@ -1,13 +1,15 @@
 package com.example.fintbackend.controllers;
 
 import com.example.fintbackend.dtos.UserDto;
+import com.example.fintbackend.models.Users;
 import com.example.fintbackend.services.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -24,6 +26,11 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<UserDto> findById(@PathVariable Integer id){
         return userService.findById(id);
+    }
+
+    @GetMapping("/checkEmail/{email}")
+    public Boolean checkEmail(@PathVariable String email){
+        return userService.existsByEmail(email);
     }
 
     //TODO: OAuth Config

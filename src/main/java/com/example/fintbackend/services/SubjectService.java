@@ -34,7 +34,7 @@ public class SubjectService {
         newSubject.setProgress(subject.getProgress());
         newSubject.setModuleId(subject.getModuleId());
         subjectRepository.save(newSubject);
-        return new ResponseEntity("Se ha creado un nuevo tema", HttpStatus.CREATED);
+        return new ResponseEntity(HttpStatus.CREATED);
     }
 
     public ResponseEntity<SubjectDto> updateById (@RequestBody SubjectDto subject, @PathVariable Integer id){
@@ -43,12 +43,12 @@ public class SubjectService {
             var b = subjectRepository.findById(id).get();
             b = b.withTitle(subject.getTitle()).withProgress(subject.getProgress()).withModuleId(subject.getModuleId());
             subjectRepository.save(b);
-            return new ResponseEntity("Se ha modificado el tema con id: "+id, HttpStatus.OK);
+            return new ResponseEntity(HttpStatus.OK);
         }
-        return new ResponseEntity("El tema buscado no existe", HttpStatus.NOT_FOUND);
+        return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
     public ResponseEntity<SubjectDto> deleteById(@PathVariable Integer id){
         subjectRepository.deleteById(id);
-        return new ResponseEntity("El tema ha sido borrado", HttpStatus.NO_CONTENT);
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 }

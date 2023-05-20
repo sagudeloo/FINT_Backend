@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -41,7 +42,7 @@ public class UserService {
         newUser.setPassword(user.getPassword());
         newUser.setRole(user.getRole());
         userRepository.save(buildUser(newUser));
-        return new ResponseEntity("New user created", HttpStatus.CREATED);
+        return new ResponseEntity(HttpStatus.CREATED);
     }
     /*      Hash Password   */
     private Users buildUser(UserDto user){
@@ -58,19 +59,28 @@ public class UserService {
 
     //TODO: Currently mixing content of UserControllersSQL + services in SWMDBJWT
 
+    public Boolean existsByEmail(@PathVariable String email){
+        var a = userRepository.findByEmail(email);
+        return a.isPresent();
+    }
+    public Optional<Users> findUserByEmail(@RequestBody String email){
+        return userRepository.findByEmail(email);
+    }
+
     public ResponseEntity<UserDto> updateById(@RequestBody UserDto user, @PathVariable Integer id){
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         var a = userRepository.existsById(id);
         if(a){
             var b = userRepository.findById(id).get();
-            b = b.withName(user.getName()).withPassword(user.getPassword()).withEmail(user.getEmail()).withRole(user.getRole());
+            b = b.withName(user.getName()).withPassword(encoder.encode(user.getPassword())).withEmail(user.getEmail()).withRole(user.getRole());
             userRepository.save(b);
-            return new ResponseEntity("Se ha modificado el usuario con id: " + id, HttpStatus.OK);
+            return new ResponseEntity(HttpStatus.OK);
         }
-        return new ResponseEntity("El usuario buscado no existe", HttpStatus.NOT_FOUND);
+        return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
 
     public ResponseEntity<UserDto> deleteById(@PathVariable Integer id){
         userRepository.deleteById(id);
-        return new ResponseEntity("El usuario ha sido borrado", HttpStatus.NO_CONTENT);
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 }
