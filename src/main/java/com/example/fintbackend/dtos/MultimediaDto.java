@@ -13,7 +13,7 @@ public class MultimediaDto {
 
     private Integer id;             //PK
     private String title;
-    private String content;
+    private String url;
     private Integer duration;
     private Integer contentId;      //FK
 
