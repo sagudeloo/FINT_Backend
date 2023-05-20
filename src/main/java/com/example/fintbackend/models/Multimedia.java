@@ -7,18 +7,19 @@ import java.io.Serializable;
 
 @Entity
 @Data
-@Table(name = "multimedias")
+@Table(name = "multimedia")
 @With
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Multimedias implements Serializable {
+public class Multimedia implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String title;
-    private String url;
     private Integer duration;
-    private Integer contentId;
+    private String url;
+    private String author;
+    private String date;
 }
 

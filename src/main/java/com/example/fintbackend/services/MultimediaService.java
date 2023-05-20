@@ -1,7 +1,7 @@
 package com.example.fintbackend.services;
 
 import com.example.fintbackend.dtos.MultimediaDto;
-import com.example.fintbackend.models.Multimedias;
+import com.example.fintbackend.models.Multimedia;
 import com.example.fintbackend.repositories.MultimediaRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,11 +29,12 @@ public class MultimediaService {
     }
 
     public  ResponseEntity<MultimediaDto> create(@RequestBody MultimediaDto multimedia){
-        Multimedias newMultimedia = new Multimedias();
+        Multimedia newMultimedia = new Multimedia();
         newMultimedia.setTitle(multimedia.getTitle());
-        newMultimedia.setUrl(multimedia.getUrl());
         newMultimedia.setDuration(multimedia.getDuration());
-        newMultimedia.setContentId(multimedia.getContentId());
+        newMultimedia.setUrl(multimedia.getUrl());
+        newMultimedia.setAuthor(multimedia.getAuthor());
+        newMultimedia.setDate(multimedia.getDate());
         multimediaRepository.save(newMultimedia);
         return new ResponseEntity(HttpStatus.CREATED);
     }
@@ -41,7 +42,7 @@ public class MultimediaService {
         var a = multimediaRepository.existsById(id);
         if(a){
             var b = multimediaRepository.findById(id).get();
-            b = b.withTitle(multimedia.getTitle()).withUrl(multimedia.getUrl()).withDuration(multimedia.getDuration()).withContentId(multimedia.getContentId());
+            b = b.withTitle(multimedia.getTitle()).withDuration(multimedia.getDuration()).withUrl(multimedia.getUrl()).withAuthor(multimedia.getAuthor()).withDate(multimedia.getDate());
             multimediaRepository.save(b);
             return new ResponseEntity(HttpStatus.OK);
         }
