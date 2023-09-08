@@ -11,10 +11,10 @@ import lombok.NoArgsConstructor;
 @Builder
 public class MultimediaDto {
 
-    private Integer id;             //PK
+    private Integer id;
     private String title;
-    private String url;
     private Integer duration;
-    private Integer contentId;      //FK
-
+    private String url;
+    private String author;
+    private String date;
 }
